@@ -18,6 +18,7 @@ Release:	0.1
 License:	GPL v2
 Group:		Development/Languages/Java
 Source0:	http://stanse.fi.muni.cz/download/%{name}-%{version}.tar.bz2
+Source1:	%{name}.sh
 # Source0-md5:	e281d21df3fe162cd525df7002a36c8a
 URL:		http://stanse.fi.muni.cz/
 BuildRequires:	ant
@@ -71,9 +72,11 @@ install -d $RPM_BUILD_ROOT{%{_javadir},%{_bindir}}
 # jars
 cp -a dist/%{name}.jar $RPM_BUILD_ROOT%{_javadir}/%{name}-%{version}.jar
 ln -s %{name}-%{version}.jar $RPM_BUILD_ROOT%{_javadir}/%{name}.jar
+cp -a dist/lib $RPM_BUILD_ROOT%{_javadir}/%{name}
 
 # scripts
 cp dist/bin/* $RPM_BUILD_ROOT%{_bindir}
+cp %{SOURCE1} $RPM_BUILD_ROOT%{_bindir}/stanse
 
 # javadoc
 %if %{with javadoc}
@@ -91,6 +94,7 @@ ln -nfs %{name}-%{version} %{_javadocdir}/%{name}
 %files
 %defattr(644,root,root,755)
 %{_javadir}/*.jar
+%{_javadir}/%{name}
 %attr(755,root,root) %{_bindir}/*
 
 %if %{with javadoc}

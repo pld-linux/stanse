@@ -6,4 +6,4 @@ STANSE_HOME=${STANSE_HOME:-"$HOME/.stanse"}
 export STANSE_HOME
 mkdir $STANSE_HOME
 
-java cz.muni.stanse.Stanse -gui
+java cz.muni.stanse.Stanse $@

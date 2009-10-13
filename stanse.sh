@@ -1,7 +1,9 @@
 #!/bin/sh
 
 CLASSPATH=$(build-classpath-directory /usr/share/java/stanse):$(find-jar stanse)
-echo $CLASSPATH
 export CLASSPATH
-export STANSE_HOME=$HOME/.stanse
+STANSE_HOME=${STANSE_HOME:-"$HOME/.stanse"}
+export STANSE_HOME
+mkdir $STANSE_HOME
+
 java cz.muni.stanse.Stanse -gui

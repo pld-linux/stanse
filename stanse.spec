@@ -67,15 +67,17 @@ export LC_ALL=en_US # source code not US-ASCII
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_javadir},%{_bindir}}
+install -d $RPM_BUILD_ROOT{%{_javadir},%{_bindir},%{_datadir}/stanse}
 
 # jars
 cp -a dist/%{name}.jar $RPM_BUILD_ROOT%{_javadir}/%{name}-%{version}.jar
 ln -s %{name}-%{version}.jar $RPM_BUILD_ROOT%{_javadir}/%{name}.jar
-cp -a dist/lib $RPM_BUILD_ROOT%{_javadir}/%{name}
 
-# scripts
-cp dist/bin/* $RPM_BUILD_ROOT%{_bindir}
+# files
+cp -a dist/bin $RPM_BUILD_ROOT%{_datadir}/stanse/bin
+cp -a dist/data $RPM_BUILD_ROOT%{_datadir}/stanse/data
+cp -a dist/lib $RPM_BUILD_ROOT%{_datadir}/stanse/lib
+cp dist/properties.xml $RPM_BUILD_ROOT%{_datadir}/stanse/properties.xml
 cp %{SOURCE1} $RPM_BUILD_ROOT%{_bindir}/stanse
 
 # javadoc
@@ -94,8 +96,12 @@ ln -nfs %{name}-%{version} %{_javadocdir}/%{name}
 %files
 %defattr(644,root,root,755)
 %{_javadir}/*.jar
-%{_javadir}/%{name}
-%attr(755,root,root) %{_bindir}/*
+%dir %{_datadir}/%{name}
+%attr(755,root,root) %{_datadir}/%{name}/bin
+%{_datadir}/%{name}/lib
+%{_datadir}/%{name}/data
+%{_datadir}/%{name}/properties.xml
+%attr(755,root,root) %{_bindir}/stanse
 
 %if %{with javadoc}
 %files javadoc

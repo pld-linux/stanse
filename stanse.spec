@@ -11,7 +11,8 @@
 #
 %include	/usr/lib/rpm/macros.java
 
-Summary:	stanse
+Summary:	Error-finding tool based on static analysis
+Summary(pl.UTF-8):	Narzędzie do znajdowania błędów na podstawie statycznej analizy kodu.
 Name:		stanse
 Version:	1.0.0
 Release:	0.1
@@ -30,11 +31,59 @@ BuildRequires:	jpackage-utils
 BuildRequires:	rpm >= 4.4.9-56
 BuildRequires:	rpm-javaprov
 BuildRequires:	rpmbuild(macros) >= 1.300
+Requires:	gcc
+Requires:	make
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-stanse
+Stanse is an error-finding tool based on static analysis. The aim of
+this project is to research, evaluate and implement modern approaches
+to automatic bug finding for programs written in procedural languages
+related to C (C/C++/C#/Java). Currently this software tool is able to
+automatically discover some types of bugs in real-life sized projects
+(e.g. the Linux kernel).
+
+Its main features are:
+
+ - Target language is C (ANSI C99), but extensible to C#/C++/Java.
+ - Full ANSI C99 support, including most GNU C extensions.
+ - Modular structure, easy extensibility, fast development.
+ - Easy to use interface and error path inspection.
+ - Makefile support and batch execution.
+
+It is able to detect following kinds of errors:
+
+ - Memory allocation errors (null pointers, memory leaks, dangling
+   pointers)
+ - Bad locking discipline (double locks/unlocks, locks not released
+   etc.)
+ - Interrupt handling (cli/sti-style).
+ - And all the errors which can be described by state automata.
+
+%description -l pl.UTF-8
+Stanse jest narzędziem do znajdowania błędów w oprogramowaniu na
+podstawie statycznej analizy kodu. Celem projektu jest rozwijanie,
+ocena i implementacja nowoczesnych metod automatycznego znajdowania
+błędów w programach napisanych w językach proceduralnych pokrewnych C
+(C/C++/C#/Java). Narzędzie to jest w stanie automatycznie odkryć pewne
+rodzaje błędów w dużych projektach takich jak jądro systemu Linux.
+
+Główna cechy stanse, to:
+
+ - obsługa języka C (ANSI C99), rozszerzalna do C#/C++/Java
+ - pełne wsparcie ANSII C99, włączając większość rozszerzeń GNU C
+ - rozszerzalna, modularna struktura
+ - łatwy w użyciu interfejs
+ - wsparcie dla Makefile
+ - możliwość pracy nie interaktywnej
+
+Stanse jest w stanie wykryć następujące typy błędów:
+
+ - Błędy alokacji pamięci
+ - Błędy związane z blokadami
+ - Błędy obsługi przerwań
+ - Wszelkie błędy, które można opisać przy użyciu automatów skończonych
 
 %package javadoc
 Summary:	Online manual for %{name}

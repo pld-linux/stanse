@@ -3,14 +3,7 @@
 %bcond_without	javadoc		# don't build javadoc
 %bcond_without	tests		# don't build and run tests
 
-%if "%{pld_release}" == "ti"
-%bcond_without	java_sun	# build with gcj
-%else
-%bcond_with	java_sun	# build with java-sun
-%endif
-#
 %include	/usr/lib/rpm/macros.java
-
 Summary:	Error-finding tool based on static analysis
 Summary(pl.UTF-8):	Narzędzie do znajdowania błędów na podstawie statycznej analizy kodu.
 Name:		stanse
@@ -25,15 +18,13 @@ URL:		http://stanse.fi.muni.cz/
 BuildRequires:	ant
 BuildRequires:	ant-antlr3
 BuildRequires:	ant-cpptasks
-%{!?with_java_sun:BuildRequires:	java-gcj-compat-devel}
-%{?with_java_sun:BuildRequires:	java-sun}
+BuildRequires:	java-sun
 BuildRequires:	jpackage-utils
 BuildRequires:	rpm >= 4.4.9-56
 BuildRequires:	rpm-javaprov
 BuildRequires:	rpmbuild(macros) >= 1.300
 Requires:	gcc
 Requires:	make
-BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -144,6 +135,7 @@ ln -nfs %{name}-%{version} %{_javadocdir}/%{name}
 
 %files
 %defattr(644,root,root,755)
+%doc README SUCCESS_STORIES TODO.txt WISH.txt
 %{_javadir}/*.jar
 %dir %{_datadir}/%{name}
 %attr(755,root,root) %{_datadir}/%{name}/bin

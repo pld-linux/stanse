@@ -18,11 +18,12 @@ URL:		http://stanse.fi.muni.cz/
 BuildRequires:	ant
 BuildRequires:	ant-antlr3
 BuildRequires:	ant-cpptasks
-BuildRequires:	java-sun
+BuildRequires:	jdk
 BuildRequires:	jpackage-utils
 BuildRequires:	rpm >= 4.4.9-56
 BuildRequires:	rpm-javaprov
 BuildRequires:	rpmbuild(macros) >= 1.300
+BuildConflicts:	java-gcj-compat
 Requires:	gcc
 Requires:	make
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)

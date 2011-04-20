@@ -8,7 +8,7 @@ Summary:	Error-finding tool based on static analysis
 Summary(pl.UTF-8):	Narzędzie do znajdowania błędów na podstawie statycznej analizy kodu.
 Name:		stanse
 Version:	1.0.0
-Release:	0.1
+Release:	0.2
 License:	GPL v2
 Group:		Development/Languages/Java
 Source0:	http://stanse.fi.muni.cz/download/%{name}-%{version}.tar.bz2
@@ -25,6 +25,7 @@ BuildRequires:	rpm-javaprov
 BuildRequires:	rpmbuild(macros) >= 1.300
 BuildConflicts:	java-gcj-compat
 Requires:	gcc
+Requires:	jpackage-utils
 Requires:	make
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 

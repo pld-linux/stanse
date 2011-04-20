@@ -1,8 +1,11 @@
 #!/bin/sh -e
+
+[ -r /usr/share/java-utils/java-functions ]
+. /usr/share/java-utils/java-functions
+
 # Set paths
 CLASSPATH=$(build-classpath-directory /usr/share/stanse/lib)
 CLASSPATH=$CLASSPATH:$(find-jar stanse)
-export CLASSPATH
 
 export PATH=$PATH:/usr/share/stanse/data/bin
 
@@ -13,4 +16,6 @@ mkdir -p $STANSE_HOME
 [ -e "$STANSE_HOME/data" ] || cp -a /usr/share/stanse/data $STANSE_HOME/data
 [ -e "$STANSE_HOME/properties.xml" ] || cp -a /usr/share/stanse/properties.xml $STANSE_HOME/properties.xml
 
-exec java cz.muni.stanse.Stanse "$@"
+MAIN_CLASS=cz.muni.stanse.Stanse
+
+exec run ${1:+"$@"}

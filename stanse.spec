@@ -3,7 +3,6 @@
 %bcond_without	javadoc		# don't build javadoc
 %bcond_without	tests		# don't build and run tests
 
-%include	/usr/lib/rpm/macros.java
 Summary:	Error-finding tool based on static analysis
 Summary(pl.UTF-8):	Narzędzie do znajdowania błędów na podstawie statycznej analizy kodu.
 Name:		stanse
